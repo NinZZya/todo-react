@@ -1,12 +1,13 @@
 import React from 'react';
+import { Layout } from 'antd';
 import Login from '../../pages/Login';
 
 
 const App = () => {
   return (
-    <div>
+    <Layout>
       <Login />
-    </div>
+    </Layout>
   );
 }
 
