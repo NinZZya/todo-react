@@ -10,6 +10,7 @@ const FormLogin = () => {
       className="login-form"
       initialValues={{ remember: true }}
       onFinish={() => console.log('Finish')}
+      style={{ padding: '50px', border: '1px solid #d9d9d9' }}
     >
       <Form.Item
         name="username"
@@ -27,8 +28,8 @@ const FormLogin = () => {
           placeholder="Password"
         />
       </Form.Item>
-      <Form.Item>
-        <Button type="primary" htmlType="submit" className="login-form-button">
+      <Form.Item style={{ textAlign: 'center' }}>
+        <Button type="primary" htmlType="submit" className="login-form-button" style={{ width: '150px' }}>
           Log in
         </Button>
       </Form.Item>

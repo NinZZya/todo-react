@@ -5,7 +5,7 @@ import Login from '../../pages/Login';
 
 const App = () => {
   return (
-    <Layout>
+    <Layout style={{ backgroundColor: '#fff', padding: '50px' }}>
       <Login />
     </Layout>
   );
