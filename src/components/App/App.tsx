@@ -1,14 +1,32 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Layout } from 'antd';
 import Login from '../../pages/Login';
+import Routes from '../Routes';
+import { TAppState } from '../../types';
+import { getAuthorizationStatus } from '../../reducer/user/selectors';
+import { AuthorizationStatus } from '../../const';
 
+interface TProps {
+  authorizationStatus: string;
+};
 
-const App = () => {
+const App = (props: TProps) => {
+  const { authorizationStatus } = props;
+
   return (
     <Layout style={{ backgroundColor: '#fff', padding: '50px' }}>
-      <Login />
+     {
+        authorizationStatus === AuthorizationStatus.AUTH
+          ? <Routes />
+          : <Login />
+      }
     </Layout>
   );
 }
 
-export default App;
+const mapSteteToProps = (state: TAppState) => ({
+  authorizationStatus: getAuthorizationStatus(state),
+});
+
+export default connect(mapSteteToProps)(App);
