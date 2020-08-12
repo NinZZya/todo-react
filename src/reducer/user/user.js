@@ -1,5 +1,6 @@
 import { AuthorizationStatus } from '../../const';
 import { extend } from '../../utils/utils';
+import TODOApi from '../../api';
 
 export const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,
@@ -26,6 +27,24 @@ export const ActionCreator = {
     payload: null,
   }),
 };
+
+export const Operation = {
+  login: (authData) => (dispatch, getState) => {
+    return TODOApi.auth(authData)
+      .then((responce) => {
+        dispatch(ActionCreator.requireAuthorization(
+          AuthorizationStatus.NO_AUTH)
+        );
+        dispatch(ActionCreator.setUser(responce));
+
+        const status = responce.id
+          ? AuthorizationStatus.AUTH
+          : AuthorizationStatus.AUTH_ERROR;
+
+        dispatch(ActionCreator.requireAuthorization(status));
+      });
+  },
+}
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
