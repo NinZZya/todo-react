@@ -15,8 +15,8 @@ const App = (props: TProps) => {
   const { authorizationStatus } = props;
 
   return (
-    <Layout style={{ backgroundColor: '#fff', padding: '50px' }}>
-     {
+    <Layout style={{ backgroundColor: '#fff' }}>
+      {
         authorizationStatus === AuthorizationStatus.AUTH
           ? <Routes />
           : <Login />
