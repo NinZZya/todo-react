@@ -13,6 +13,7 @@ export const ActionType = {
   LOAD_BOARDS: 'LOAD_BOARDS',
   SET_ACTIVE_BOARD_ID: 'SET_ACTIVE_BOARD_ID',
   CHANGE_BOARDS_STATUS: 'CHANGE_BOARDS_STATUS',
+  RESET_ACTIVE_BOARD_ID: 'RESET_ACTIVE_BOARD_ID',
   RESET_BOARDS: 'RESET_BOARDS',
 };
 
@@ -28,6 +29,10 @@ export const ActionCreator = {
   changeBoardsStatus: (status) => ({
     type: ActionType.CHANGE_BOARDS_STATUS,
     payload: status,
+  }),
+  resetActiveBoardId: () => ({
+    type: ActionType.RESET_ACTIVE_BOARD_ID,
+    payload: null,
   }),
   resetBoards: () => ({
     type: ActionType.RESET_BOARDS,
@@ -65,6 +70,10 @@ export const reducer = (state = initialState, action) => {
         state, {
         boardsStatus: action.payload,
       });
+    case ActionType.RESET_ACTIVE_BOARD_ID:
+        return extend(state, {
+          activeBoardId: initialState.activeBoardId,
+        });
     case ActionType.RESET_BOARDS:
       return extend(initialState, {});
 
