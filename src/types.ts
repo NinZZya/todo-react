@@ -21,3 +21,14 @@ export type TBoard = {
 };
 
 export type TBoards = TBoard[] | [];
+
+export type TTask = {
+  id: TId,
+  title: string,
+  description: string,
+  boardId: TId,
+  userId: TId,
+  isDone: boolean,
+}
+
+export type TTasks = TTask[] | [];
