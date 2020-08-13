@@ -42,9 +42,8 @@ export const Operation = {
     return TODOApi.getBoards(userId)
       .then((responce) => {
         const boards = responce.length > 0 ? convertToBoards(responce) : {};
-        console.log(boards)
-        dispatch(ActionCreator.loadBoards(boards));
         dispatch(ActionCreator.changeBoardsStatus(Status.LOADED));
+        dispatch(ActionCreator.loadBoards(boards));
       });
   },
 };
