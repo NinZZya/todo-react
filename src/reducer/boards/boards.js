@@ -1,5 +1,6 @@
 import TODOApi from '../../api';
 import { extend } from '../../utils/utils';
+import { convertToBoards } from '../../adapter';
 
 export const initialState = {
   activeBoardId: -1,
@@ -31,7 +32,9 @@ export const Operation = {
   loadBoards: (userId) => (dispatch, getState) => {
     return TODOApi.getBoards(userId)
       .then((responce) => {
-        dispatch(ActionCreator.loadBoards(responce));
+        const boards = responce.length > 0 ? convertToBoards(responce) : {};
+        console.log(boards)
+        dispatch(ActionCreator.loadBoards(boards));
       });
   },
 };

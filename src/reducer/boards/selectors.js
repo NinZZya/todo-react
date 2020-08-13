@@ -6,6 +6,11 @@ export const getActiveBoardId = (state) => {
   return state[NAME_SPACE].activeBoardId;
 };
 
+export const getBoard = (state, boardId) => {
+  return state[NAME_SPACE].boards[boardId];
+};
+
 export const getBoards = (state) => {
-  return state[NAME_SPACE].boards;
+  const boards = state[NAME_SPACE].boards;
+  return boards ? Object.values(boards) : [];
 };
