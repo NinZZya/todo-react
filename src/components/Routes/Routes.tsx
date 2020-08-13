@@ -7,6 +7,7 @@ import {
 import HeaderApp from '../HeaderApp';
 import Main from '../../pages/Main';
 import Board from '../../pages/Board';
+import Task from '../../pages/Task';
 import { AppRout } from '../../const';
 
 const Routes = () => {
@@ -18,6 +19,9 @@ const Routes = () => {
       </Switch>
       <Switch>
         <Route exact path={`${AppRout.BOARD}/:boardId`} component={Board} />
+      </Switch>
+      <Switch>
+        <Route exact path={`${AppRout.BOARD}/:boardId${AppRout.TASK}/:taskId`} component={Task} />
       </Switch>
     </Router>
   );

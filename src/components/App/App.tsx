@@ -5,7 +5,7 @@ import { Action } from 'redux';
 import { Layout } from 'antd';
 import Login from '../../pages/Login';
 import Routes from '../Routes';
-import { TAppState, TId, TUser } from '../../types';
+import { TAppState, TId, TStatus, TUser } from '../../types';
 import { getAuthorizationStatus, getUser } from '../../reducer/user/selectors';
 import {
   Operation as BoardsOperation,
@@ -17,12 +17,14 @@ import {
 
 } from '../../reducer/tasks/tasks';
 import { AuthorizationStatus, PathKey } from '../../const';
-import { getActiveBoardId } from '../../reducer/boards/selectors';
-import { getActiveTaskId } from '../../reducer/tasks/selectors';
+import { getActiveBoardId, getBoardsStatus } from '../../reducer/boards/selectors';
+import { getActiveTaskId, getTasksStatus } from '../../reducer/tasks/selectors';
 import { getPathKeyValue } from '../../utils/utils';
 
 interface TProps {
-  authorizationStatus: string;
+  authorizationStatus: TStatus;
+  boardsStatus: TStatus;
+  tasksStatus: TStatus;
   user: TUser;
   activeBoardId: TId;
   activeTaskId: TId;
@@ -35,6 +37,8 @@ interface TProps {
 const App = (props: TProps) => {
   const {
     authorizationStatus,
+    boardsStatus,
+    tasksStatus,
     user,
     activeBoardId,
     activeTaskId,
@@ -44,8 +48,14 @@ const App = (props: TProps) => {
     setActiveTaskId,
   } = props;
   const path = window.location.pathname;
-  const boardId = Number(getPathKeyValue(path, PathKey.BOARD)) || -1;
-  const taskId = Number(getPathKeyValue(path, PathKey.TASK)) || -1;
+  const boardId =
+      Number(getPathKeyValue(path, PathKey.BOARD)) !== null
+        ? Number(getPathKeyValue(path, PathKey.BOARD))
+        : -1;
+  const taskId =
+      Number(getPathKeyValue(path, PathKey.TASK))!== null
+        ? Number(getPathKeyValue(path, PathKey.TASK))
+        : -1;
 
   if ((boardId !== activeBoardId) && (boardId !== -1)) {
     setActiveBoardId(boardId);
@@ -56,7 +66,11 @@ const App = (props: TProps) => {
   }
 
 
-  if (authorizationStatus === AuthorizationStatus.AUTH) {
+  if (
+    (authorizationStatus === AuthorizationStatus.AUTH)
+    && (boardsStatus === null)
+    && (tasksStatus === null)
+  ) {
     loadBoards(user.id);
     loadTasks(user.id);
   }
@@ -77,6 +91,8 @@ const mapSteteToProps = (state: TAppState) => ({
   user: getUser(state),
   activeBoardId: getActiveBoardId(state),
   activeTaskId: getActiveTaskId(state),
+  boardsStatus: getBoardsStatus(state),
+  tasksStatus: getTasksStatus(state),
 });
 
 
