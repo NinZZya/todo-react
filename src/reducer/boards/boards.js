@@ -38,6 +38,7 @@ export const ActionCreator = {
 export const Operation = {
   loadBoards: (userId) => (dispatch, getState) => {
     dispatch(ActionCreator.changeBoardsStatus(Status.LOADING));
+
     return TODOApi.getBoards(userId)
       .then((responce) => {
         const boards = responce.length > 0 ? convertToBoards(responce) : {};
