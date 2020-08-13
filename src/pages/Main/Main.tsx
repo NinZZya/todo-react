@@ -3,21 +3,22 @@ import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { Layout, Spin } from 'antd';
 import ListBoards from '../../components/lists/ListBoards';
-import { getBoards } from '../../reducer/boards/selectors';
-import { ActionCreator, initialState } from '../../reducer/boards/boards';
-import { TAppState, TBoards, TId } from '../../types';
+import { getBoardsStatus } from '../../reducer/boards/selectors';
+import { ActionCreator } from '../../reducer/boards/boards';
+import { TAppState, TStatus, TBoards, TId } from '../../types';
+import { Status } from '../../const';
 
 const { Content } = Layout;
 
 interface TProps {
   boards: TBoards | null;
+  boardsStatus: TStatus;
 };
 
-const initialBoards = initialState.boards;
-
 const Main = (props: TProps) => {
-  const { boards } = props;
-  if (boards === initialBoards) {
+  const { boardsStatus } = props;
+
+  if (boardsStatus !== Status.LOADED) {
     return <Spin style={{ padding: '50px', width: '100%' }} tip="Loading..."></Spin>
   }
 
@@ -31,7 +32,7 @@ const Main = (props: TProps) => {
 export { Main };
 
 const mapStateToPorps = (state: TAppState) => ({
-  boards: getBoards(state),
+  boardsStatus: getBoardsStatus(state),
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
