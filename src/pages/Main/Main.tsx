@@ -1,14 +1,41 @@
 import React from 'react';
-import { Layout } from 'antd';
+import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
+import { Layout, Spin } from 'antd';
+import ListBoards from '../../components/lists/ListBoards';
+import { getBoards } from '../../reducer/boards/selectors';
+import { ActionCreator } from '../../reducer/boards/boards';
+import { TAppState, TBoards, TId } from '../../types';
 
 const { Content } = Layout;
 
-const Main = () => {
+interface TProps {
+  boards: TBoards | null;
+};
+
+const Main = (props: TProps) => {
+  const { boards } = props;
+  if (boards === null) {
+    return <Spin style={{ padding: '50px', width: '100%' }} tip="Loading..."></Spin>
+  }
+
   return (
-    <Content>
-      Main page
+    <Content style={{ padding: '50px' }}>
+      <ListBoards />
     </Content>
   );
 };
 
-export default Main;
+export { Main };
+
+const mapStateToPorps = (state: TAppState) => ({
+  boards: getBoards(state),
+});
+
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  setActiveBoardId(activeBoardId: TId) {
+    dispatch(ActionCreator.setActiveBoardId(activeBoardId))
+  },
+});
+
+export default connect(mapStateToPorps, mapDispatchToProps)(Main);

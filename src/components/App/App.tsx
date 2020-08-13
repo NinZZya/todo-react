@@ -1,22 +1,31 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { ThunkDispatch } from 'redux-thunk';
+import { Action } from 'redux';
 import { Layout } from 'antd';
 import Login from '../../pages/Login';
 import Routes from '../Routes';
-import { TAppState } from '../../types';
-import { getAuthorizationStatus } from '../../reducer/user/selectors';
+import { TAppState, TId, TUser } from '../../types';
+import { getAuthorizationStatus, getUser } from '../../reducer/user/selectors';
+import { Operation as BoardsOperation } from '../../reducer/boards/boards';
 import { AuthorizationStatus } from '../../const';
 
 interface TProps {
   authorizationStatus: string;
+  user: TUser;
+  loadBoards: (userId: TId) => void;
 };
 
 const App = (props: TProps) => {
-  const { authorizationStatus } = props;
+  const { authorizationStatus, user, loadBoards } = props;
+
+  if (authorizationStatus === AuthorizationStatus.AUTH) {
+    loadBoards(user.id);
+  }
 
   return (
-    <Layout style={{ backgroundColor: '#fff', padding: '50px' }}>
-     {
+    <Layout style={{ backgroundColor: '#fff' }}>
+      {
         authorizationStatus === AuthorizationStatus.AUTH
           ? <Routes />
           : <Login />
@@ -27,6 +36,14 @@ const App = (props: TProps) => {
 
 const mapSteteToProps = (state: TAppState) => ({
   authorizationStatus: getAuthorizationStatus(state),
+  user: getUser(state),
 });
 
-export default connect(mapSteteToProps)(App);
+
+const mapDispatchToPorps = (dispatch: ThunkDispatch<TAppState, void, Action>) => ({
+  loadBoards(userId: TId) {
+    dispatch(BoardsOperation.loadBoards(userId));
+  },
+});
+
+export default connect(mapSteteToProps, mapDispatchToPorps)(App);
