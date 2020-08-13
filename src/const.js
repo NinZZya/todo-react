@@ -15,3 +15,8 @@ export const TasksFilter = {
   ACTIVE: 'active',
   ARCHIVE: `archive`,
 }
+
+export const Status = {
+  LOADING: 'loading',
+  LOADED: 'loaded',
+};
