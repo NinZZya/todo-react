@@ -1,6 +1,7 @@
 import store from './store';
 
 export type TAppState = typeof store;
+export type TStatus = string;
 
 export type TAuthData = {
   login: string,
