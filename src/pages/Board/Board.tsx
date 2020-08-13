@@ -14,7 +14,6 @@ const { Content } = Layout;
 
 const Board = (props: TProps) => {
   const { tasksStatus } = props;
-  console.log(tasksStatus);
 
   if (tasksStatus !== Status.LOADED) {
     return <Spin style={{ padding: '50px', width: '100%' }} tip="Loading..."></Spin>

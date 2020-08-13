@@ -27,7 +27,6 @@ export const getActiveBoardTasks = createSelector(
   getBoardTasks,
   getTasksFilter,
   (tasks, tasksFilter) => {
-    console.log(tasks)
     switch(tasksFilter) {
       case TasksFilter.ACTIVE:
         return tasks.filter((task) => !task.isDone);
