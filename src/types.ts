@@ -13,3 +13,11 @@ export type TUser = {
   id: TId,
   login: string,
 };
+
+export type TBoard = {
+  id: TId,
+  title: string,
+  userId: TId,
+};
+
+export type TBoards = TBoard[] | [];
