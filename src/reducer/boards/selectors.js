@@ -1,16 +1,16 @@
 import NameSpace from '../name-space';
 
-const NAME_SPACE = NameSpace.BOARDS;
+const BOARDS = NameSpace.BOARDS;
 
 export const getActiveBoardId = (state) => {
-  return state[NAME_SPACE].activeBoardId;
+  return state[BOARDS].activeBoardId;
 };
 
-export const getBoard = (state, boardId = state.activeBoardId) => {
-  return state[NAME_SPACE].boards[boardId];
+export const getBoard = (state, boardId = state[BOARDS].activeBoardId) => {
+  return state[BOARDS].boards[boardId];
 };
 
 export const getBoards = (state) => {
-  const boards = state[NAME_SPACE].boards;
+  const boards = state[BOARDS].boards;
   return boards ? Object.values(boards) : [];
 };
