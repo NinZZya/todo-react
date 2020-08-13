@@ -1,6 +1,7 @@
 import store from './store';
 
 export type TAppState = typeof store;
+export type TStatus = string;
 
 export type TAuthData = {
   login: string,
@@ -18,6 +19,17 @@ export type TBoard = {
   id: TId,
   title: string,
   userId: TId,
+  tasks: TId[],
 };
 
 export type TBoards = TBoard[] | [];
+
+export type TTask = {
+  id: TId,
+  title: string,
+  description: string,
+  userId: TId,
+  isDone: boolean,
+}
+
+export type TTasks = TTask[] | [];

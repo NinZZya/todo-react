@@ -10,11 +10,11 @@ import { TAppState, TBoards, TId } from '../../../types';
 import { AppRout } from '../../../const';
 
 interface TProps {
-  boards: TBoards,
+  boards: TBoards;
   setActiveBoardId: (activeBoardId: TId) => void;
 };
 
-const ListBoards: React.FC<TProps> = (props: TProps) => {
+const ListBoards = (props: TProps) => {
   const { boards, setActiveBoardId } = props;
 
   return (
