@@ -18,7 +18,7 @@ interface TProps {
 };
 
 const ListTasks: React.FC<TProps> = (props: TProps) => {
-  const { board, tasks, setActiveTaskId } = props;
+  const { board, tasks, activeBoardId, setActiveTaskId } = props;
 
   return (
     <List
@@ -28,7 +28,7 @@ const ListTasks: React.FC<TProps> = (props: TProps) => {
       renderItem={(task) => (
         <List.Item>
           <Link
-            to={`${AppRout.BOARD}/${task.id}${AppRout.TASK}/${task.id}`}
+            to={`${AppRout.BOARD}/${activeBoardId}${AppRout.TASK}/${task.id}`}
             onClick={() => setActiveTaskId(task.id)}
           >
             <FileOutlined /> {task.title}
