@@ -6,6 +6,7 @@ import { UserOutlined, LogoutOutlined } from '@ant-design/icons';
 import { TUser, TAppState } from '../../../types';
 import { ActionCreator as UserActionCreator } from '../../../reducer/user/user';
 import { ActionCreator as BoardsActionCreator } from '../../../reducer/boards/boards';
+import { ActionCreator as TasksActionCreator } from '../../../reducer/tasks/tasks';
 import { getUser } from '../../../reducer/user/selectors';
 
 interface TProps {
@@ -59,6 +60,7 @@ const mapStateToProps = (state: TAppState) => {
 const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
     reset() {
+      dispatch(TasksActionCreator.resetTasks());
       dispatch(BoardsActionCreator.resetBoards());
       dispatch(UserActionCreator.resetUser());
     },
