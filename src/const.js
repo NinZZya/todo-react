@@ -4,10 +4,15 @@ export const AuthorizationStatus = {
   AUTH_ERROR: 'AUTH_ERROR',
 };
 
+export const PathKey = {
+  BOARD: 'board',
+  TASK: 'task',
+};
+
 export const AppRout = {
-  ROOT: '/',
-  BOARD: '/board',
-  TASK: '/task',
+  ROOT: `/`,
+  BOARD: `/${PathKey.BOARD}`,
+  TASK: `/${PathKey.TASK}`,
 };
 
 export const TasksFilter = {
