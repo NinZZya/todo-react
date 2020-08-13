@@ -5,3 +5,4 @@ const convertToMap = (values) => {
 };
 
 export const convertToBoards = (boards) => convertToMap(boards);
+export const convertToTasks = (tasks) => convertToMap(tasks);
