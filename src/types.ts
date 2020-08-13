@@ -18,6 +18,7 @@ export type TBoard = {
   id: TId,
   title: string,
   userId: TId,
+  tasks: TId[],
 };
 
 export type TBoards = TBoard[] | [];
@@ -26,7 +27,6 @@ export type TTask = {
   id: TId,
   title: string,
   description: string,
-  boardId: TId,
   userId: TId,
   isDone: boolean,
 }
