@@ -10,7 +10,7 @@ import { TAppState, TBoards, TId } from '../../../types';
 import { AppRout } from '../../../const';
 
 interface TProps {
-  boards: TBoards,
+  boards: TBoards;
   setActiveBoardId: (activeBoardId: TId) => void;
 };
 
