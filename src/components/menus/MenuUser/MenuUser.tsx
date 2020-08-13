@@ -4,7 +4,8 @@ import { Dispatch } from 'redux';
 import { Menu } from 'antd';
 import { UserOutlined, LogoutOutlined } from '@ant-design/icons';
 import { TUser, TAppState } from '../../../types';
-import { ActionCreator } from '../../../reducer/user/user';
+import { ActionCreator as UserActionCreator } from '../../../reducer/user/user';
+import { ActionCreator as BoardsActionCreator } from '../../../reducer/boards/boards';
 import { getUser } from '../../../reducer/user/selectors';
 
 interface TProps {
@@ -58,7 +59,8 @@ const mapStateToProps = (state: TAppState) => {
 const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
     reset() {
-      dispatch(ActionCreator.resetUser());
+      dispatch(BoardsActionCreator.resetBoards());
+      dispatch(UserActionCreator.resetUser());
     },
   }
 };

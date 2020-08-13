@@ -21,7 +21,7 @@ export const ActionCreator = {
     type: ActionType.SET_ACTIVE_BOARD_ID,
     payload: boardId,
   }),
-  reset: () => ({
+  resetBoards: () => ({
     type: ActionType.RESET_BOARDS,
     payload: null,
   }),
