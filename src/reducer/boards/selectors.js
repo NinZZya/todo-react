@@ -6,7 +6,7 @@ export const getActiveBoardId = (state) => {
   return state[NAME_SPACE].activeBoardId;
 };
 
-export const getBoard = (state, boardId) => {
+export const getBoard = (state, boardId = state.activeBoardId) => {
   return state[NAME_SPACE].boards[boardId];
 };
 
