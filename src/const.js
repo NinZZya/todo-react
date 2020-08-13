@@ -7,4 +7,11 @@ export const AuthorizationStatus = {
 export const AppRout = {
   ROOT: '/',
   BOARD: '/board',
+  TASK: '/task',
 };
+
+export const TasksFilter = {
+  ALL: 'all',
+  ACTIVE: 'active',
+  ARCHIVE: `archive`,
+}
