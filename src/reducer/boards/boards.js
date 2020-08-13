@@ -25,7 +25,7 @@ export const ActionCreator = {
     type: ActionType.SET_ACTIVE_BOARD_ID,
     payload: boardId,
   }),
-  changeBoardStatus: (status) => ({
+  changeBoardsStatus: (status) => ({
     type: ActionType.CHANGE_BOARDS_STATUS,
     payload: status,
   }),
@@ -37,13 +37,13 @@ export const ActionCreator = {
 
 export const Operation = {
   loadBoards: (userId) => (dispatch, getState) => {
-    dispatch(ActionCreator.changeBoardStatus(Status.LOADING));
+    dispatch(ActionCreator.changeBoardsStatus(Status.LOADING));
     return TODOApi.getBoards(userId)
       .then((responce) => {
         const boards = responce.length > 0 ? convertToBoards(responce) : {};
         console.log(boards)
         dispatch(ActionCreator.loadBoards(boards));
-        dispatch(ActionCreator.changeBoardStatus(Status.LOADED));
+        dispatch(ActionCreator.changeBoardsStatus(Status.LOADED));
       });
   },
 };
