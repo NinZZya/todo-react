@@ -14,7 +14,7 @@ interface TProps {
   setActiveBoardId: (activeBoardId: TId) => void;
 };
 
-const ListBoards: React.FC<TProps> = (props: TProps) => {
+const ListBoards = (props: TProps) => {
   const { boards, setActiveBoardId } = props;
 
   return (
