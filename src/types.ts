@@ -1,5 +1,5 @@
 import store from './store';
-import { UserStatus, LoadingStatus } from './const';
+import { UserStatus, LoadingStatus, TasksFilter } from './const';
 import { NameSpace } from './reducer/name-space';
 
 export type TAppState = typeof store;
@@ -25,7 +25,19 @@ export interface IBoard {
 
 export interface IBoards {
   TId: IBoard;
-}
+};
+
+export interface ITask {
+  id: TId;
+  title: string;
+  description: string;
+  userId: TId;
+  isDone: boolean;
+};
+
+export interface ITasks {
+  TId: ITask;
+};
 
 export interface IUserState {
   userStatus: UserStatus.NO_AUTH;
@@ -39,18 +51,14 @@ export interface IBoardsState {
   boards: IBoards | null | any;
 };
 
-export interface ITask {
-  id: TId;
-  title: string;
-  description: string;
-  userId: TId;
-  isDone: boolean;
-}
-
-export interface ITasks {
-  TId: ITask;
-}
+export interface ITasksState {
+  activeTaskId: TId,
+  tasksStatus: LoadingStatus,
+  tasksFilter: TasksFilter,
+  tasks: ITasks,
+};
 export interface IAppState {
   [NameSpace.USER]: IUserState;
   [NameSpace.BOARDS]: IBoardsState;
+  [NameSpace.TASKS]: ITasksState;
 };
