@@ -13,5 +13,5 @@ export const getBoard = (state: IAppState, boardId = state[BOARDS_NAME].activeBo
 
 export const getBoards = (state: IAppState) => {
   const boards = state[BOARDS_NAME].boards;
-  return boards ? Object.values(boards) : [];
+  return boards !== null ? Object.values(boards) : [];
 };
