@@ -11,7 +11,7 @@ import { AppRout } from '../../../../const';
 
 // TODO : review
 interface ListBoardsProps {
-  boards: IBoard[] | [] | any;
+  boards: IBoard[] | [];
   setActiveBoardId: (activeBoardId: TId) => void;
 };
 
