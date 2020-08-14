@@ -22,3 +22,9 @@ export const AppRout = {
   BOARD: `/${PathKey.BOARD}`,
   TASK: `/${PathKey.TASK}`,
 };
+
+export enum TasksFilter {
+  ALL = 'ALL',
+  ACTIVE = 'ACTIVE',
+  ARCHIVE = `ARCHIVE`,
+}
