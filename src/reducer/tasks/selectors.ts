@@ -1,7 +1,7 @@
 import {createSelector} from 'reselect';
 import { NameSpace } from '../name-space';
 import { IAppState, IBoard, ITask, ITasks, TId } from '../../types';
-import { getBoard } from '../boards/selectors';
+import * as boardsSelector from '../boards/selectors';
 import { TasksFilter } from '../../const';
 
 const TASKS_NAME = NameSpace.TASKS;
@@ -20,7 +20,7 @@ export const getTask = (state: IAppState, taskId = state[TASKS_NAME].activeTaskI
 };
 
 export const getBoardTasks = createSelector(
-  getBoard,
+  boardsSelector.getBoard,
   getTasks,
   (board: IBoard | null, tasks: ITasks | null) => {
     if (board !== null && tasks !== null) {
