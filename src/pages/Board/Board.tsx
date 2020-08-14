@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Layout, Spin } from 'antd';
 import ListTasks from './components/ListTasks';
+import FilterTasks from './components/FilterTasks';
 import * as tasksSelectors from '../../reducer/tasks/selectors';
 import { LoadingStatus } from '../../const';
 import { IAppState } from '../../types';
@@ -21,6 +22,9 @@ const Board: React.FC<BoardProps> = (props) => {
 
   return (
     <Content style={{ padding: '50px' }}>
+      <div style={{ textAlign: 'center', padding: '10px' }}>
+        <FilterTasks />
+      </div>
       <ListTasks />
     </Content>
   );

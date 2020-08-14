@@ -32,7 +32,7 @@ const ListTasks: React.FC<ListTasksProps> = (props) => {
       renderItem={(task) => (
         <List.Item>
           <Link
-            to={`${AppRout.BOARD}/${activeBoardId}/${AppRout.TASK}/${task.id}`}
+            to={`${AppRout.BOARD}/${activeBoardId}${AppRout.TASK}/${task.id}`}
             onClick={() => setActiveTaskId(task.id)}
           >
             <FileOutlined /> {task.title}
