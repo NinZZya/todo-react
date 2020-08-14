@@ -4,19 +4,19 @@ import { ThunkDispatch } from 'redux-thunk';
 import { connect } from 'react-redux';
 import { Form, Input, Button, message } from 'antd';
 import { UserOutlined, LockOutlined, LoginOutlined } from '@ant-design/icons';
-import { Operation } from '../../../reducer/user/user';
-import { getAuthorizationStatus } from '../../../reducer/user/selectors';
-import { AuthorizationStatus } from '../../../const';
-import { TAppState, TAuthData } from '../../../types';
-interface TProps {
-  authorizationStatus: string;
+import { userOperation } from '../../../reducer/user/user';
+import * as userSelector from '../../../reducer/user/selectors';
+import { UserStatus } from '../../../const';
+import { IAppState, TAuthData } from '../../../types';
+interface FormLoginProps {
+  userStatus: string;
   login: (authData: TAuthData) => void;
 }
 
-const FormLogin = (props: TProps) => {
-  const { authorizationStatus, login } = props;
+const FormLogin: React.FC<FormLoginProps> = (props) => {
+  const { userStatus, login } = props;
 
-  if (authorizationStatus === AuthorizationStatus.AUTH_ERROR) {
+  if (userStatus === UserStatus.AUTH_ERROR) {
     message.error('Bad login or password');
   }
 
@@ -58,13 +58,13 @@ const FormLogin = (props: TProps) => {
 
 export { FormLogin };
 
-const mapStateToProps = (state: TAppState) => ({
-  authorizationStatus: getAuthorizationStatus(state),
+const mapStateToProps = (state: IAppState) => ({
+  userStatus: userSelector.getUserStatus(state),
 });
 
-const mapDispatchToProps = (dispatch: ThunkDispatch<TAppState, void, Action>) => ({
+const mapDispatchToProps = (dispatch: ThunkDispatch<IAppState, void, Action>) => ({
   login(authData: TAuthData) {
-    dispatch(Operation.login(authData))
+    dispatch(userOperation.login(authData))
   }
 });
 
