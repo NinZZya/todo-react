@@ -26,7 +26,7 @@ const Main: React.FC<MainProps> = (props) => {
     }
   });
 
-  if (boardsStatus !== LoadingStatus.SUCSESS) {
+  if (boardsStatus !== LoadingStatus.SUCCESS) {
     return <Spin style={{ padding: '50px', width: '100%' }} tip="Loading..."></Spin>
   }
 
