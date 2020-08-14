@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { Layout, Spin } from 'antd';
+import ListBoards from './components/ListBoards';
 import { boardsOperation } from '../../reducer/boards/boards';
 import * as boardsSelector from '../../reducer/boards/selectors'
 import * as  userSelector from '../../reducer/user/selectors';
@@ -31,7 +32,7 @@ const Main: React.FC<MainProps> = (props) => {
 
   return (
     <Content style={{ padding: '50px' }}>
-      <Spin style={{ padding: '50px', width: '100%' }} tip="Loading..."></Spin>
+      <ListBoards />
     </Content>
   );
 };
