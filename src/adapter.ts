@@ -8,7 +8,7 @@ export const convertToBoards = (boards: IBoard[]) => {
   });
   return boardsMap;
 };
-
+// TODO : review
 export const convertToTasks = (tasks: ITask[]) => {
   const tasksMap: ITasks | any = {};
 
