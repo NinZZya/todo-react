@@ -5,6 +5,7 @@ import { ThunkDispatch } from 'redux-thunk';
 import { Layout, Spin } from 'antd';
 import ListBoards from './components/ListBoards';
 import { boardsOperation } from '../../reducer/boards/boards';
+import { tasksOperation } from '../../reducer/tasks/tasks';
 import * as boardsSelector from '../../reducer/boards/selectors'
 import * as  userSelector from '../../reducer/user/selectors';
 import { LoadingStatus } from '../../const';
@@ -14,15 +15,17 @@ interface MainProps {
   user: IUser | null,
   boardsStatus: LoadingStatus;
   loadBoards: (userId: TId) => void;
+  loadTasks: (userId: TId) => void;
 };
 
 const { Content } = Layout;
 
 const Main: React.FC<MainProps> = (props) => {
-  const { boardsStatus, user, loadBoards } = props;
+  const { boardsStatus, user, loadBoards, loadTasks } = props;
   useEffect(() => {
     if (user && boardsStatus === LoadingStatus.INIT) {
-      loadBoards(user.id)
+      loadBoards(user.id);
+      loadTasks(user.id);
     }
   });
 
@@ -48,6 +51,9 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<IAppState, void, Action>) =>
   return {
     loadBoards(userId: TId) {
       dispatch(boardsOperation.loadBoards(userId));
+    },
+    loadTasks(userId: TId) {
+      dispatch(tasksOperation.loadTasks(userId));
     },
   }
 };
