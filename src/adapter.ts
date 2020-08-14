@@ -1,19 +1,19 @@
-import { IBoard, IBoards, ITask, ITasks }  from './types';
-// TODO : review
+import { IBoard, ITask }  from './types';
+
 export const convertToBoards = (boards: IBoard[]) => {
-  const boardsMap: IBoards | any = {};
+  const boardsMap: any = {};
 
   boards.forEach((board: IBoard) => {
     boardsMap[board.id] = board;
   });
-  return boardsMap;
+  return Object.keys(boardsMap).length !== 0 ? boardsMap : null;
 };
-// TODO : review
+
 export const convertToTasks = (tasks: ITask[]) => {
-  const tasksMap: ITasks | any = {};
+  const tasksMap: any = {};
 
   tasks.forEach((task: ITask) => {
     tasksMap[task.id] = task;
   });
-  return tasksMap;
+  return Object.keys(tasksMap).length !== 0 ? tasksMap : null;
 };
