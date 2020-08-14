@@ -7,7 +7,7 @@ import ListBoards from './components/ListBoards';
 import { boardsOperation } from '../../reducer/boards/boards';
 import { tasksOperation } from '../../reducer/tasks/tasks';
 import * as boardsSelector from '../../reducer/boards/selectors';
-import * as taskssSelector from '../../reducer/tasks/selectors'
+import * as taskssSelector from '../../reducer/tasks/selectors';
 import * as userSelector from '../../reducer/user/selectors';
 import { LoadingStatus } from '../../const';
 import { IAppState, IUser, TId } from '../../types';
