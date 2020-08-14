@@ -24,7 +24,7 @@ export interface IBoard {
 };
 
 export interface IBoards {
-  TId: IBoard;
+  [key: number]: IBoard;
 };
 
 export interface ITask {
@@ -36,7 +36,7 @@ export interface ITask {
 };
 
 export interface ITasks {
-  TId: ITask;
+  [key: number]: ITask;
 };
 
 export interface IUserState {
@@ -44,18 +44,16 @@ export interface IUserState {
   user: IUser | null;
 };
 
-// TODO : review
 export interface IBoardsState {
   activeBoardId: TId;
   boardsStatus: LoadingStatus;
-  boards: IBoards | null | any;
+  boards: IBoards | null;
 };
-
 export interface ITasksState {
   activeTaskId: TId,
   tasksStatus: LoadingStatus,
   tasksFilter: TasksFilter,
-  tasks: ITasks,
+  tasks: ITasks | null,
 };
 export interface IAppState {
   [NameSpace.USER]: IUserState;
