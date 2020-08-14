@@ -1,5 +1,6 @@
 import users from './mock/users';
 import boards from './mock/boards';
+import tasks from './mock/tasks';
 import { TAuthData, TId } from './types';
 
 const DELAY_MS = 500;
@@ -26,6 +27,11 @@ class TODOApi {
   static async getBoards(userId: TId) {
     await delay(DELAY_MS);
     return boards.filter((board) => board.userId === userId);
+  }
+
+  static async getTasks(userId: TId) {
+    await delay(DELAY_MS);
+    return tasks.filter((task) => task.userId === userId);
   }
 }
 
