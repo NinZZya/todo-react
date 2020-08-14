@@ -6,7 +6,7 @@ import { extend } from '../../utils/utils';
 
 const initialState = {
   userStatus: UserStatus.NO_AUTH,
-  user: { id: -1, login: '' },
+  user: null,
 };
 
 enum userActionType {
@@ -25,7 +25,7 @@ export const userActionCreator = {
     type: userActionType.CHANGE_USER_STATUS,
     payload: status,
   }),
-  setUser: (user: IUser) => ({
+  setUser: (user: IUser | null) => ({
     type: userActionType.SET_USER,
     payload: user,
   }),
@@ -38,11 +38,11 @@ export const userActionCreator = {
 export const userOperation = {
   login: (authData: TAuthData) => (dispatch: Dispatch, getState: (authData: TAuthData) => void) => {
     return TODOApi.auth(authData)
-      .then((responce: IUser ) => {
+      .then((responce: IUser | null) => {
         dispatch(userActionCreator.changeUserStatus(UserStatus.NO_AUTH));
         dispatch(userActionCreator.setUser(responce));
 
-        const status = responce.id !== -1
+        const status = responce !== null
           ? UserStatus.AUTH
           : UserStatus.AUTH_ERROR;
 
