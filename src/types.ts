@@ -39,6 +39,17 @@ export interface IBoardsState {
   boards: IBoards | null | any;
 };
 
+export interface ITask {
+  id: TId;
+  title: string;
+  description: string;
+  userId: TId;
+  isDone: boolean;
+}
+
+export interface ITasks {
+  TId: ITask;
+}
 export interface IAppState {
   [NameSpace.USER]: IUserState;
   [NameSpace.BOARDS]: IBoardsState;
