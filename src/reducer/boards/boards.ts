@@ -22,7 +22,7 @@ export enum boardsActionType {
 
 interface IBoardsAction {
   type: boardsActionType;
-  payload: TId | LoadingStatus | IBoards | {};
+  payload: TId | LoadingStatus | IBoards | {} | null;
 };
 
 export const boardsActionCreator = {
@@ -30,7 +30,7 @@ export const boardsActionCreator = {
     type: boardsActionType.LOAD_BOARDS,
     payload: boards,
   }),
-  setActiveBoardId: (boardId: IBoards) => ({
+  setActiveBoardId: (boardId: TId) => ({
     type: boardsActionType.SET_ACTIVE_BOARD_ID,
     payload: boardId,
   }),

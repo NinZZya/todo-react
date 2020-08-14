@@ -11,3 +11,14 @@ export enum LoadingStatus {
   SUCSESS = 'SUCSESS',
   ERROR = 'SUCSESS',
 };
+
+export enum PathKey {
+  BOARD = 'board',
+  TASK ='task',
+};
+
+export const AppRout = {
+  ROOT: `/`,
+  BOARD: `/${PathKey.BOARD}`,
+  TASK: `/${PathKey.TASK}`,
+};

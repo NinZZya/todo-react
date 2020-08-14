@@ -32,6 +32,7 @@ export interface IUserState {
   user: IUser | null;
 };
 
+// TODO : review
 export interface IBoardsState {
   activeBoardId: TId;
   boardsStatus: LoadingStatus;
