@@ -1,11 +1,19 @@
-import { IBoard, IBoards }  from './types';
+import { IBoard, IBoards, ITask, ITasks }  from './types';
 // TODO : review
 export const convertToBoards = (boards: IBoard[]) => {
-  const valuesMap: IBoards | any = {};
+  const boardsMap: IBoards | any = {};
 
   boards.forEach((board: IBoard) => {
-    valuesMap[board.id] = board;
+    boardsMap[board.id] = board;
   });
-  return valuesMap;
+  return boardsMap;
 };
 
+export const convertToTasks = (tasks: ITask[]) => {
+  const tasksMap: ITasks | any = {};
+
+  tasks.forEach((task: ITask) => {
+    tasksMap[task.id] = task;
+  });
+  return tasksMap;
+};
