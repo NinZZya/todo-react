@@ -64,7 +64,7 @@ export const boardsOperation = {
   },
 };
 
-export const reducer = (state = initialState, action: IBoardsAction) => {
+export const boardsReducer = (state = initialState, action: IBoardsAction) => {
   switch (action.type) {
     case boardsActionType.LOAD_BOARDS:
       return extend(
