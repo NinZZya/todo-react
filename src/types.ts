@@ -1,4 +1,6 @@
 import store from './store';
+import { UserStatus } from './const';
+import { NameSpace } from './reducer/name-space';
 
 export type TAppState = typeof store;
 export type TStatus = string;
@@ -7,29 +9,18 @@ export type TAuthData = {
   login: string,
   password: string,
 };
+export type TId = number;
 
-export type TId = number | null;
-
-export type TUser = {
-  id: TId,
-  login: string,
+export interface IUser {
+  id: TId;
+  login: string;
 };
 
-export type TBoard = {
-  id: TId,
-  title: string,
-  userId: TId,
-  tasks: TId[],
+export interface IUserState {
+  userStatus: UserStatus.NO_AUTH;
+  user: IUser;
 };
 
-export type TBoards = TBoard[] | [];
-
-export type TTask = {
-  id: TId,
-  title: string,
-  description: string,
-  userId: TId,
-  isDone: boolean,
-}
-
-export type TTasks = TTask[] | [];
+export interface IAppState {
+  [NameSpace.USER]: IUserState;
+};
