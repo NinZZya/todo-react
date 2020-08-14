@@ -8,7 +8,7 @@ import { userActionCreator } from '../../../../reducer/user/user';
 import { getUser } from '../../../../reducer/user/selectors';
 
 interface MenuUserProps {
-  user: IUser;
+  user: IUser | null;
   reset: () => void;
 };
 
@@ -16,6 +16,10 @@ const { SubMenu } = Menu;
 
 const MenuUser: React.FC<MenuUserProps> = (props) => {
   const { user, reset } = props;
+
+  if (user === null) {
+    return <div></div>
+  }
 
   return (
     <Menu

@@ -1,5 +1,6 @@
 import users from './mock/users';
-import { TAuthData } from './types';
+import boards from './mock/boards';
+import { TAuthData, TId } from './types';
 
 const DELAY_MS = 500;
 const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
@@ -16,13 +17,15 @@ class TODOApi {
           id: user.id,
           login: user.login,
         }
-        : {
-          id: -1,
-          login: ''
-        };
+        : null;
     }
 
-    return { id: -1, login: '' };
+    return null;
+  }
+
+  static async getBoards(userId: TId) {
+    await delay(DELAY_MS);
+    return boards.filter((board) => board.userId === userId);
   }
 }
 
