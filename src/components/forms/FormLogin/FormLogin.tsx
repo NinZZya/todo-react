@@ -20,6 +20,10 @@ const FormLogin: React.FC<FormLoginProps> = (props) => {
     message.error('Bad login or password');
   }
 
+  if (userStatus === UserStatus.LOAD_ERROR) {
+    message.error('Server error, try again later');
+  }
+
   return (
     <Form
       name="normal_login"
