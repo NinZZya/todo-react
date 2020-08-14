@@ -1,20 +1,40 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { connect } from 'react-redux';
+import { Action } from 'redux';
+import { ThunkDispatch } from 'redux-thunk';
 import { Layout, Spin } from 'antd';
 import ListTasks from './components/ListTasks';
 import FilterTasks from './components/FilterTasks';
-import * as tasksSelectors from '../../reducer/tasks/selectors';
+import * as userSelector from '../../reducer/user/selectors';
+import * as boardsSelector from '../../reducer/boards/selectors';
+import * as tasksSelector from '../../reducer/tasks/selectors';
+import { boardsOperation } from '../../reducer/boards/boards';
+import { tasksOperation } from '../../reducer/tasks/tasks';
 import { LoadingStatus } from '../../const';
-import { IAppState } from '../../types';
+import { IAppState, TId, IUser } from '../../types';
 
 interface BoardProps {
+  boardsStatus: LoadingStatus;
   tasksStatus: LoadingStatus;
+  user: IUser | null;
+  loadBoards: (userId: TId) => void;
+  loadTasks: (userId: TId) => void;
 };
 
 const { Content } = Layout;
 
 const Board: React.FC<BoardProps> = (props) => {
-  const { tasksStatus } = props;
+  const { boardsStatus, tasksStatus, user, loadBoards, loadTasks } = props;
+
+  useEffect(() => {
+    if (user && boardsStatus === LoadingStatus.INIT) {
+      loadBoards(user.id);
+    }
+
+    if (user && tasksStatus === LoadingStatus.INIT) {
+      loadTasks(user.id);
+    }
+  });
 
   if (tasksStatus !== LoadingStatus.SUCCESS) {
     return <Spin style={{ padding: '50px', width: '100%' }} tip="Loading..."></Spin>
@@ -33,7 +53,20 @@ const Board: React.FC<BoardProps> = (props) => {
 export { Board };
 
 const mapStateToPorps = (state: IAppState) => ({
-  tasksStatus: tasksSelectors.getTasksStatus(state),
+  boardsStatus: boardsSelector.getBoardsStatus(state),
+  tasksStatus: tasksSelector.getTasksStatus(state),
+  user: userSelector.getUser(state),
 });
 
-export default connect(mapStateToPorps)(Board);
+const mapDispatchToProps = (dispatch: ThunkDispatch<IAppState, void, Action>) => {
+  return {
+    loadBoards(userId: TId) {
+      dispatch(boardsOperation.loadBoards(userId));
+    },
+    loadTasks(userId: TId) {
+      dispatch(tasksOperation.loadTasks(userId));
+    },
+  }
+};
+
+export default connect(mapStateToPorps, mapDispatchToProps)(Board);
