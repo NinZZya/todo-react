@@ -5,20 +5,24 @@ import { Menu } from 'antd';
 import { UserOutlined, LogoutOutlined } from '@ant-design/icons';
 import { IUser, IAppState } from '../../../../types';
 import { userActionCreator } from '../../../../reducer/user/user';
+import { boardsActionCreator } from '../../../../reducer/boards/boards';
+import { tasksActionCreator } from '../../../../reducer/tasks/tasks';
 import { getUser } from '../../../../reducer/user/selectors';
 
 interface MenuUserProps {
   user: IUser | null;
-  reset: () => void;
+  resetUser: () => void;
+  resetBoards: () => void;
+  resetTasks: () => void;
 };
 
 const { SubMenu } = Menu;
 
 const MenuUser: React.FC<MenuUserProps> = (props) => {
-  const { user, reset } = props;
+  const { user, resetUser, resetBoards, resetTasks } = props;
 
   if (user === null) {
-    return <div></div>
+    return null;
   }
 
   return (
@@ -40,7 +44,11 @@ const MenuUser: React.FC<MenuUserProps> = (props) => {
             key="menu-item-log-out"
           >
             <a href="/"
-              onClick={() => reset()}
+              onClick={() => {
+                resetTasks();
+                resetBoards();
+                resetUser();
+              }}
             >
               <LogoutOutlined />
               Log out...
@@ -61,8 +69,14 @@ const mapStateToProps = (state: IAppState) => {
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
-    reset() {
+    resetUser() {
       dispatch(userActionCreator.resetUser());
+    },
+    resetBoards() {
+      dispatch(boardsActionCreator.resetBoards());
+    },
+    resetTasks() {
+      dispatch(tasksActionCreator.resetTasks());
     },
   }
 };
