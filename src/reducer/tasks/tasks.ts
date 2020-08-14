@@ -72,7 +72,7 @@ export const tasksOperation = {
   },
 };
 
-export const reducer = (state = initialState, action: ITasksAction) => {
+export const tasksReducer = (state = initialState, action: ITasksAction) => {
   switch (action.type) {
     case tasksActionType.LOAD_TASKS:
       return extend(
