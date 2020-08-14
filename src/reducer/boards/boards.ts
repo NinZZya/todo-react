@@ -55,7 +55,7 @@ export const boardsOperation = {
     return TODOApi.getBoards(userId)
       .then((responce: IBoard[]) => {
           const boards = responce.length > 0 ? convertToBoards(responce) : {};
-          dispatch(boardsActionCreator.changeBoardsStatus(LoadingStatus.SUCSESS));
+          dispatch(boardsActionCreator.changeBoardsStatus(LoadingStatus.SUCCESS));
           dispatch(boardsActionCreator.loadBoards(boards));
       })
       .catch(() => dispatch(

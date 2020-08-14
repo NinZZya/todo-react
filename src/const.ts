@@ -8,7 +8,7 @@ export enum UserStatus {
 export enum LoadingStatus {
   INIT = 'INIT',
   LOADING = 'LOADING',
-  SUCSESS = 'SUCSESS',
+  SUCCESS = 'SUCCESS',
   ERROR = 'SUCSESS',
 };
 
