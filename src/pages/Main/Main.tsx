@@ -13,7 +13,7 @@ import { LoadingStatus } from '../../const';
 import { IAppState, IUser, TId } from '../../types';
 
 interface MainProps {
-  user: IUser | null,
+  user: IUser | null;
   boardsStatus: LoadingStatus;
   tasksStatus: LoadingStatus;
   loadBoards: (userId: TId) => void;
