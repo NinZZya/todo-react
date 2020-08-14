@@ -24,6 +24,7 @@ const { Content } = Layout;
 
 const Main: React.FC<MainProps> = (props) => {
   const { boardsStatus, tasksStatus, user, loadBoards, loadTasks } = props;
+
   useEffect(() => {
     if (user && boardsStatus === LoadingStatus.INIT) {
       loadBoards(user.id);
